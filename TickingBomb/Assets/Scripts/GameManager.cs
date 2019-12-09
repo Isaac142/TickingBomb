@@ -13,17 +13,12 @@ public class GameManager : MonoBehaviour
 
     public PlayerCameraMovement PCMX, PCMY;
 
-    public GameObject youWin;
-    public GameObject youLost;
-
-    public GameObject inGameHUD;
+    public Interaction IT;
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = false;
-
-        timer = 30f;
 
         Time.timeScale = 1f;
     }
@@ -32,18 +27,31 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
-        if (timer <= 5)
+        int seconds = (int)(timer % 60);
+        int minutes = (int)(timer / 60) % 60;
+
+        string timerString = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+        timeText.text = timerString;
+
+        if (timer <= 30)
         {
             timeText.text = "Time Left: " + timer.ToString("F2");
         }
         else
         {
-            timeText.text = "Time Left: " + timer.ToString("F0");
+            timeText.text = "Time Left: " + timerString;
         }
 
         if (timer <= 0)
         {
             timer = 0f;
+            Time.timeScale = 0f;
+            PCMX.canMove = false;
+            PCMY.canMove = false;
+            IT.youLost.SetActive(true);
+            IT.inGameHUD.SetActive(false);
+            Cursor.visible = true;
         }
         else
         {

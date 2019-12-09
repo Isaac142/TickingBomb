@@ -14,6 +14,13 @@ public class Interaction : MonoBehaviour
     public bool isWireConnected;
     public GameObject button;
 
+    public PlayerCameraMovement PCMX, PCMY;
+
+    public GameObject youWin;
+    public GameObject youLost;
+
+    public GameObject inGameHUD;
+
     private void Start()
     {
         isWireConnected = false;
@@ -71,9 +78,23 @@ public class Interaction : MonoBehaviour
                     wires.SetActive(false);
                 }
 
+                if (hit.collider.CompareTag("Button") && isWireConnected == true)
+                {
+                    Debug.Log("Wire Connected You Win");
+                    youWin.SetActive(true);
+                    inGameHUD.SetActive(false);
+                    Time.timeScale = 0f;
+                    PCMX.canMove = false;
+                    PCMY.canMove = false;
+                    Cursor.visible = true;
+                }
+                else
+                {
+                    Time.timeScale = 1f;
+                }
+
                 if (hit.collider.CompareTag("Button") && isWireConnected == false)
                 {
-
                     Debug.Log("Wire Not Connected");
                 }
             }
