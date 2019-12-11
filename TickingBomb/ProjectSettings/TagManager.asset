@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wires
   - Button
+  - WireText
   layers:
   - Default
   - TransparentFX

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3848262505048932298}
   - component: {fileID: 3848262505048932296}
   - component: {fileID: 3848262505048932297}
+  - component: {fileID: 336872259705172920}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -150,6 +151,22 @@ MonoBehaviour:
   gravity: 20
   currentjumpForce: 5
   currentSpeed: 0.1
+--- !u!114 &336872259705172920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3848262505048932295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 065ad72c68e2d364bb04ece1dc2147de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firingPoint: {fileID: 5904099533558861704}
+  projectile: {fileID: 6590466407929359085, guid: 7d7dcce20f9a4a946816974f0739b340,
+    type: 3}
+  canThrow: 0
 --- !u!1 &4885827418684654384
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,6 +200,7 @@ Transform:
   m_Children:
   - {fileID: 4257998101352011530}
   - {fileID: 6115539776637130982}
+  - {fileID: 5904099533558861704}
   m_Father: {fileID: 3738678774045093585}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -269,6 +287,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayStart: {fileID: 7282356465956611348}
+  gameManager: {fileID: 0}
+  connectedWires: {fileID: 0}
+  wires: {fileID: 0}
+  isWireConnected: 0
+  button: {fileID: 0}
+  PCMX: {fileID: 3848262505048932296}
+  PCMY: {fileID: 1992356805}
+  youWin: {fileID: 0}
+  youLost: {fileID: 0}
+  inGameHUD: {fileID: 0}
+  connectWiresText: {fileID: 0}
+  FP: {fileID: 336872259705172920}
+--- !u!1 &6480949053870690907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5904099533558861704}
+  m_Layer: 0
+  m_Name: FiringPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5904099533558861704
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6480949053870690907}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.636, z: 0.852}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4885827418684654389}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7282356465956611348
 GameObject:
   m_ObjectHideFlags: 0

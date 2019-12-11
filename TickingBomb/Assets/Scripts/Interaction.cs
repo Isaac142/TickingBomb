@@ -9,6 +9,8 @@ public class Interaction : MonoBehaviour
 
     public GameObject rayStart;
 
+    public GameManager gameManager;
+
     public GameObject connectedWires;
     public GameObject wires;
     public bool isWireConnected;
@@ -20,6 +22,10 @@ public class Interaction : MonoBehaviour
     public GameObject youLost;
 
     public GameObject inGameHUD;
+
+    public TextMeshPro connectWiresText;
+
+    public FireProjectile FP;
 
     private void Start()
     {
@@ -87,6 +93,8 @@ public class Interaction : MonoBehaviour
                     PCMX.canMove = false;
                     PCMY.canMove = false;
                     Cursor.visible = true;
+                    gameManager.wonGame = true;
+                    FP.canThrow = false;
                 }
                 else
                 {
@@ -96,10 +104,18 @@ public class Interaction : MonoBehaviour
                 if (hit.collider.CompareTag("Button") && isWireConnected == false)
                 {
                     Debug.Log("Wire Not Connected");
+                    StartCoroutine(WaitCoroutine());
                 }
             }
 
             Debug.DrawLine(ray.origin, hit.point);
         }
+    }
+
+    public IEnumerator WaitCoroutine()
+    {
+        connectWiresText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        connectWiresText.gameObject.SetActive(false);
     }
 }

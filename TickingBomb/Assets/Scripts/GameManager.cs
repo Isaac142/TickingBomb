@@ -15,6 +15,15 @@ public class GameManager : MonoBehaviour
 
     public Interaction IT;
 
+    public bool isPaused = false;
+    public GameObject pausePanel;
+
+    public bool isTitleScreen;
+    public bool wonGame;
+
+    public FireProjectile FP;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +52,11 @@ public class GameManager : MonoBehaviour
             timeText.text = "Time Left: " + timerString;
         }
 
+        if (!isTitleScreen)
+        {
+            timeText.text = "Time Left: " + timerString;
+        }
+
         if (timer <= 0)
         {
             timer = 0f;
@@ -52,10 +66,39 @@ public class GameManager : MonoBehaviour
             IT.youLost.SetActive(true);
             IT.inGameHUD.SetActive(false);
             Cursor.visible = true;
+            FP.canThrow = false;
         }
-        else
+        else if (!isPaused && !wonGame)
         {
+            Debug.Log("Not paused");
             timer -= Time.deltaTime;
+            Time.timeScale = 1f;
+            PCMX.canMove = true;
+            PCMY.canMove = true;
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            isPaused = !isPaused;
+            Pause(isPaused);
+            if(isPaused)
+            {
+                Time.timeScale = 0f;
+                PCMX.canMove = false;
+                PCMY.canMove = false;
+                FP.canThrow = false;
+            }
+        }
+    }
+
+    public void Pause(bool pause)
+    {
+
+        if (pausePanel != null)
+        {
+            pausePanel.SetActive(pause);
+            IT.inGameHUD.SetActive(!pause);
         }
     }
 }
